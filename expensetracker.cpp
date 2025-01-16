@@ -10,6 +10,8 @@ void handleMenu(vector<Expense>* expensesDataBasePtr);
 void addExpense(vector<Expense>* expensesDataBasePtr);
 void viewExpenses(vector<Expense>* expensesDataBasePtr);
 void viewTotalExpenses(vector<Expense>* expensesDataBasePtr);
+void editExpense(vector<Expense>* expenseDataBasePtr);
+void exportToFile(vector<Expense>* expenseDataBasePtr);
 
 // ---------------------------------------------
 
@@ -17,7 +19,7 @@ int main()
 {
     double budget = 0.0;
     vector<Expense> expensesDataBase;
-    vector<Expense>* expensesDataBasePtr = &expensesDataBase; 
+    vector<Expense>* expensesDataBasePtr = &expensesDataBase;
 
     setBudget(budget);
     displayMenu();
@@ -26,7 +28,7 @@ int main()
     {
         handleMenu(expensesDataBasePtr);
     }
-
+    
     return 0;
 }
 
@@ -46,14 +48,16 @@ void displayMenu()
     cout << "1. Add New Expense\n";
     cout << "2. View Expenses\n";
     cout << "3. View Total Expenses\n";
-    cout << "4. Exit\n";
+    cout << "4. Edit An Expense\n";
+    cout << "5. Export to CSV\n";
+    cout << "6. Exit\n";
 
     // cout << "5. View Budget Summary\n";              *TO BE ADDED*
 
     cout << setw(30) << setfill('-') << '-' << endl;
-} 
+}
 
-void handleMenu(vector<Expense>* expensesDataBasePtr) 
+void handleMenu(vector<Expense>* expensesDataBasePtr)
 {
     int userInput;
 
@@ -63,8 +67,8 @@ void handleMenu(vector<Expense>* expensesDataBasePtr)
         cin >> userInput;
         cin.ignore();
 
-        if (userInput > 4 || userInput < 1){cout << "Please select a valid option.\n";}
-        else {break;} 
+        if (userInput > 6 || userInput < 1){cout << "Please select a valid option.\n";}
+        else {break;}
     }
     
     switch (userInput)
@@ -79,6 +83,12 @@ void handleMenu(vector<Expense>* expensesDataBasePtr)
         viewTotalExpenses(expensesDataBasePtr);
         break;
     case 4:
+        editExpense(expensesDataBasePtr);
+        break;
+    case 5:
+        exportToFile(expensesDataBasePtr);
+        break;
+    case 6:
         exit(0);
     }
 }
@@ -106,7 +116,7 @@ void addExpense(vector<Expense>* expensesDataBasePtr)
 
 void viewExpenses(vector<Expense>* expensesDataBasePtr)
 {
-    cout << "\n" << left << setw(10) << setfill('=') << '=' << " Expenses " 
+    cout << "\n" << left << setw(10) << setfill('=') << '=' << " Expenses "
     << right << setw(10) << setfill('=') << '=' << endl;
 
     cout << left << setw(5) << setfill(' ')<< "No."
@@ -134,16 +144,58 @@ void viewTotalExpenses(vector<Expense>* expensesDataBasePtr)
         return;
     }
     
-
     for (int i = 0; i < expensesDataBasePtr->size(); i++)
     {
         total += (*expensesDataBasePtr)[i].getExpenseCost();
     }
 
-    cout << "\n" << left << setw(7) << setfill('=') << '=' << " Total Expenses " 
+    cout << "\n" << left << setw(7) << setfill('=') << '=' << " Total Expenses "
     << right << setw(7) << setfill('=') << '=' << endl;
 
     cout << showpoint  << fixed << setprecision(2);
     cout << "Total of expenses: " << total << endl;
     cout << "Items recorded: " << expensesDataBasePtr->size() << endl;
 }
+
+void editExpense(vector<Expense>* expenseDataBasePtr)
+{
+    int expenseNumber = 0;
+    string expenseName, expenseCategory;
+    double expenseCost;
+    
+    cout << "Expense # to edit: ";
+    cin >> expenseNumber;
+    cin.ignore();
+    
+    cout << "Enter expense name: ";
+    getline(cin, expenseName);
+    cout << "Enter expense category: ";
+    getline(cin, expenseCategory);
+    cout << "Enter expense cost: ";
+    cin >> expenseCost;
+    
+    (*expenseDataBasePtr)[expenseNumber].setExpenseName(expenseName);
+    (*expenseDataBasePtr)[expenseNumber].setExpenseCategory(expenseCategory);
+    (*expenseDataBasePtr)[expenseNumber].setExpenseCost(expenseCost);
+
+    cout << "\nExpense #" << expenseNumber << " updated.\n";
+}
+
+void exportToFile(vector<Expense>* expenseDataBasePtr)
+{
+    
+    ofstream expensesFile("/Users/fud/Documents/expenses.csv");
+    
+    expensesFile << "Expense Name" << ',' << "Expense Category" << ',' << "Expense Cost" << endl;
+    
+    for (int i = 0; i < (*expenseDataBasePtr).size(); i++)
+    {
+        expensesFile << (*expenseDataBasePtr)[i].getExpenseName() << ','
+        << (*expenseDataBasePtr)[i].getExpenseCategory() << ',' <<
+        (*expenseDataBasePtr)[i].getExpenseCost() << endl;
+    }
+        
+    cout << "\nExpense file created and exported.\n";
+    
+}
+
