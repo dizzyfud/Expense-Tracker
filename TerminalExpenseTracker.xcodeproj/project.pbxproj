@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8B6B4AC42D3AB87000A75019 /* expensetracker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8B6B4AC22D3AB87000A75019 /* expensetracker.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		8B6B4AB52D3AB85300A75019 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -20,6 +24,9 @@
 
 /* Begin PBXFileReference section */
 		8B6B4AB72D3AB85300A75019 /* TerminalExpenseTracker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TerminalExpenseTracker; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B6B4AC12D3AB87000A75019 /* expense.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = expense.h; sourceTree = "<group>"; };
+		8B6B4AC22D3AB87000A75019 /* expensetracker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = expensetracker.cpp; sourceTree = "<group>"; };
+		8B6B4AC32D3AB87000A75019 /* MyLibraries.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyLibraries.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -46,6 +53,9 @@
 			children = (
 				8B6B4AB92D3AB85300A75019 /* TerminalExpenseTracker */,
 				8B6B4AB82D3AB85300A75019 /* Products */,
+				8B6B4AC12D3AB87000A75019 /* expense.h */,
+				8B6B4AC22D3AB87000A75019 /* expensetracker.cpp */,
+				8B6B4AC32D3AB87000A75019 /* MyLibraries.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +130,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B6B4AC42D3AB87000A75019 /* expensetracker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
