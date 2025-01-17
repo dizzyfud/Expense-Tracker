@@ -10,8 +10,9 @@ void handleMenu(vector<Expense>* expensesDataBasePtr, double* budgetPtr);
 void addExpense(vector<Expense>* expensesDataBasePtr, double* budgetPtr);
 void viewExpenses(vector<Expense>* expensesDataBasePtr);
 void viewTotalExpenses(vector<Expense>* expensesDataBasePtr);
-void editExpense(vector<Expense>* expenseDataBasePtr); // *TODO* - Must update budget if                            expense cost is updated. Must add old expense cost back to budget.
-void exportToFile(vector<Expense>* expenseDataBasePtr, double* budgetPtr);
+void editExpense(vector<Expense>* expenseDataBasePtr); // *TODO* - Must update budget if expense cost is updated. Must add old expense cost back to budget.
+void exportToFile(vector<Expense>* expenseDataBasePtr, double* budgetPtr); // *TODO* - Update so that budget before all expenses is posted in CSV.
+
 
 // ---------------------------------------------
 
